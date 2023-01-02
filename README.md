@@ -1,22 +1,23 @@
 # Google PubSub Emulator Docker Image
 
-# Usage
+Use the Google SDK image instead!
 
-```
-$ docker pull ghcr.io/sevenmind/pubsub-emulator:latest
-$ docker run --rm -ti --name pubsub-emu pubsub
+In `docker-compose.yml`
+
+```yaml
+services:
+  pubsub: 
+    image: google/cloud-sdk:emulators
+    volumes:
+      - pubsub-data:/opt/pubsub
+    ports:
+      - 8085:8085
+    command: > 
+      /google-cloud-sdk/bin/gcloud beta emulators 
+      pubsub start 
+        --data-dir /opt/pubsub
+        --host-port "0.0.0.0:8085"
+volumes:
+  pubsub-data:
 ```
 
-Or in a `docker-compose.yml`
-
-```
-pubsub:
-  image: ghcr.io/sevenmind/pubsub-emulator
-worker:
-  build: .
-  environment:
-    - PUBSUB_EMULATOR_HOST=pubsub:8085
-  restart: always
-  links:
-    - pubsub
-```
