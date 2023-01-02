@@ -3,7 +3,7 @@
 # Usage
 
 ```
-$ docker pull knarz/pubsub-emulator:latest
+$ docker pull ghcr.io/sevenmind/pubsub-emulator:latest
 $ docker run --rm -ti --name pubsub-emu pubsub
 ```
 
@@ -11,7 +11,7 @@ Or in a `docker-compose.yml`
 
 ```
 pubsub:
-  image: knarz/pubsub-emulator
+  image: ghcr.io/sevenmind/pubsub-emulator
 worker:
   build: .
   environment:
